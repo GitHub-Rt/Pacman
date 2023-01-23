@@ -16,8 +16,8 @@ void PlayScene::Initialize()
 {
 	Instantiate<Wall>(this);
 	Instantiate<Player>(this);
-	Camera::SetPosition(XMFLOAT3(7.5, 18, -1));//11
-	Camera::SetTarget(XMFLOAT3(7.5, 7, 4));//0
+	Camera::SetPosition(XMFLOAT3(7.5, 20, -1));//11
+	Camera::SetTarget(XMFLOAT3(7.5, 7, 5));//0
 }
 
 //çXêV

@@ -30,7 +30,7 @@ void Wall::Initialize()
 
     for (int i = 0; i < 15; i++)
     {
-        for (int j = 0; j < 15; j++)
+        for (int j = 0; j < 19; j++)
         {
             map_[i][j] = csv.GetValue(i, j);
         }
@@ -48,7 +48,7 @@ void Wall::Draw()
     for (int x = 0; x < 15; x++)                               //Wallの出現の処理
     {
         transform_.position_.x = x;                    //～個マス壁配置
-        for (int z = 0; z < 15; z++)                        //Wallの出現の処理
+        for (int z = 0; z < 19; z++)                        //Wallの出現の処理
 
         {
             int type = map_[x][z]; //&&どっちも揃ったら マップにブロックの処理

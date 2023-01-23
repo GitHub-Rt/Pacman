@@ -22,8 +22,13 @@ void Player::Initialize()
     //モデルデータのロード
     hModel_ = Model::Load("Pacman.fbx");
     assert(hModel_ >= 0);
+    
     transform_.position_.x = 1.5;
     transform_.position_.z = 1.5;
+
+    transform_.scale_.x *= 1.25f;
+    transform_.scale_.y *= 1.25f;
+    transform_.scale_.z *= 1.25f;
 
     pStage = (Wall*)FindObject("Wall");
     assert(pStage != nullptr);
