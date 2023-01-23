@@ -125,6 +125,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Enemy\EnemyManager.cpp" />
+    <ClCompile Include="Enemy\Enemy_Green.cpp" />
+    <ClCompile Include="Enemy\Enemy_Orange.cpp" />
+    <ClCompile Include="Enemy\Enemy_Pink.cpp" />
+    <ClCompile Include="Enemy\Enemy_Red.cpp" />
     <ClCompile Include="Engine\Audio.cpp" />
     <ClCompile Include="Engine\BoxCollider.cpp" />
     <ClCompile Include="Engine\Camera.cpp" />
@@ -150,6 +155,11 @@
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enemy\EnemyManager.h" />
+    <ClInclude Include="Enemy\Enemy_Green.h" />
+    <ClInclude Include="Enemy\Enemy_Orange.h" />
+    <ClInclude Include="Enemy\Enemy_Pink.h" />
+    <ClInclude Include="Enemy\Enemy_Red.h" />
     <ClInclude Include="Engine\Audio.h" />
     <ClInclude Include="Engine\BoxCollider.h" />
     <ClInclude Include="Engine\Camera.h" />
