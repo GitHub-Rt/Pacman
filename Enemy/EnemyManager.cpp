@@ -1,5 +1,6 @@
 #include "EnemyManager.h"
 #include "../Wall.h"
+#include "../Engine/Model.h"
 
 EnemyManager::EnemyManager(GameObject* parent)
 {
@@ -71,4 +72,40 @@ bool EnemyManager::HaveWall(Transform* trans)
 
 
 	return false;
+}
+
+void EnemyManager::ModelLoad(int TypeNum)
+{
+	EnemyHandle = (EnemyType)TypeNum;
+	int hModel = -1;
+
+	switch (EnemyHandle)
+	{
+	default:
+		break;
+	case Red:
+		hModel = Model::Load("Enemy_Red.fbx");
+		assert(hModel >= 0);
+		break;
+	case Green:
+		hModel = Model::Load("Enemy_Green.fbx");
+		assert(hModel >= 0);
+		break;
+	case Pink:
+		hModel = Model::Load("Enemy_Pink.fbx");
+		assert(hModel >= 0);
+		break;
+	case Orange:
+		hModel = Model::Load("Enemy_Orange.fbx");
+		assert(hModel >= 0);
+		break;
+	}
+}
+
+void EnemyManager::ModelDraw(int TypeNum, Transform& trans)
+{
+	EnemyHandle = (EnemyType)TypeNum;
+	Transform MyPosition = trans;
+	Model::SetTransform(EnemyHandle, MyPosition);
+	Model::Draw(EnemyHandle);
 }
