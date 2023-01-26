@@ -7,8 +7,10 @@ private :
 
 public :
 
-	void Initialize();
-	void Draw();
+	void Initialize() override;
+	void Update() override;
+	void Draw() override;
+	
 
 	/// <summary>
 	/// Ÿ‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğŒˆ‚ß‚éŠÖ”
