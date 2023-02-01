@@ -7,6 +7,8 @@
 Wall::Wall(GameObject* parent)
     :GameObject(parent, "Wall")//,hModel_(-1)
 {
+    hModel_[0] = -1;
+    hModel_[1] = -1;
 }
 
 //デストラクタ
@@ -28,9 +30,9 @@ void Wall::Initialize()
     CsvReader csv;
     csv.Load("Map.csv"); //Mapのデータをロード
 
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < MAP_ROW; i++)
     {
-        for (int j = 0; j < 19; j++)
+        for (int j = 0; j < MAP_COL; j++)
         {
             map_[i][j] = csv.GetValue(i, j);
         }
@@ -45,14 +47,15 @@ void Wall::Update()
 //描画
 void Wall::Draw()
 {
-    for (int x = 0; x < 15; x++)                               //Wallの出現の処理
+    for (int x = 0; x < MAP_ROW; x++)                               //Wallの出現の処理
     {
         transform_.position_.x = x;                    //～個マス壁配置
-        for (int z = 0; z < 19; z++)                        //Wallの出現の処理
+
+        for (int z = 0; z < MAP_COL; z++)                        //Wallの出現の処理
 
         {
             int type = map_[x][z]; //&&どっちも揃ったら マップにブロックの処理
-            transform_.position_.z = z;                   //～個マス壁配置
+            transform_.position_.z = z ;                   //～個マス壁配置
             Model::SetTransform(hModel_[type], transform_); //配列[0]か[1]で壁か床か調整できる
             Model::Draw(hModel_[type]);                    //配列[0]か[1]で壁か床か調整できる
         }

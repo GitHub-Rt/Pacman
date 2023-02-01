@@ -4,12 +4,17 @@
 //ステージを管理するクラス
 class Wall : public GameObject
 {
+    const int MAP_ROW = 23;
+    const int MAP_COL = 23;
+    const int MAP_SIZE = 23;
+
+
     //int hModel_;    //モデル番号Wallの変数
     //int hModel2_;    //モデル番号Floarの変数
 
     int hModel_[2]; //[0]床　[1]壁
 
-    int map_[15][19]; //2次元配列
+    int map_[23][23]; //2次元配列
 
 
 
