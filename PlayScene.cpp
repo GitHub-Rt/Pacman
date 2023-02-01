@@ -3,7 +3,7 @@
 #include "Wall.h"
 #include "Player.h"
 #include "Engine/Camera.h"
-
+#include "Enemy/Enemy_Red.h"
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
@@ -18,6 +18,11 @@ void PlayScene::Initialize()
 	Instantiate<Player>(this);
 	Camera::SetPosition(XMFLOAT3(10, 30, 0));
 	Camera::SetTarget(XMFLOAT3(10, 0, 10));
+
+
+	Instantiate<Enemy_Red>(this);
+
+
 }
 
 //更新

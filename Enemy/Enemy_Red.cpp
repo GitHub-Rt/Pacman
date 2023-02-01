@@ -1,11 +1,30 @@
 #include "Enemy_Red.h"
+#include "../Engine/Model.h"
 #include "../Player.h"
+
+#include "../Wall.h"
+
+Enemy_Red::Enemy_Red(GameObject* parent)
+	: GameObject(parent,"Enemy_Red"),hModel(-1)
+{
+
+}
+
+Enemy_Red::~Enemy_Red()
+{
+
+}
 
 
 void Enemy_Red::Initialize()
 {
-	hModel = 0;
-	EnemyManager::ModelLoad(hModel);
+	hModel = Model::Load("Enemy_Red.fbx");
+	assert(hModel >= 0);
+
+
+	transform_.position_.x = 12;
+	transform_.position_.z = 12;
+
 }
 
 void Enemy_Red::Update()
@@ -15,39 +34,16 @@ void Enemy_Red::Update()
 
 void Enemy_Red::Draw()
 {
-	EnemyManager::ModelDraw(hModel,transform_);
+	Model::SetTransform(hModel, transform_);
+	Model::Draw(hModel);
+}
+
+void Enemy_Red::Release()
+{
+
 }
 
 void Enemy_Red::NextPos()
 {
-	//ƒvƒŒƒCƒ„[‚ÌŒã‚ë‚ð’Ç‚¢‚©‚¯‚éAI
-	Player* pPlayer = (Player*)FindObject("Player");
-	if (pPlayer == nullptr)
-	{
-		KillMe();
-	}
-	XMFLOAT3 PlayerPos = pPlayer->GetPosition();
-
-	XMVECTOR vMyPos = XMLoadFloat3(&transform_.position_);
-	XMVECTOR vPlayer = XMLoadFloat3(&PlayerPos);
-
-
-	XMVECTOR vMove = vPlayer - vMyPos;
-	XMVector3Normalize(vMove);
-
-
-	XMFLOAT3 move;
-	XMStoreFloat3(&move, vMove);
-
-	Transform nextPos;
-	nextPos.position_.x = transform_.position_.x + move.x;
-	nextPos.position_.z = transform_.position_.z + move.z;
-
-	bool isMove = EnemyManager::HaveWall(&nextPos);
-
-	if (isMove)
-	{
-		transform_.position_.x += move.x;
-		transform_.position_.z += move.z;
-	}
+	
 }

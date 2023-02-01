@@ -90,7 +90,7 @@
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Enemy\Enemy_Green.cpp">
+    <ClCompile Include="Enemy\Enemy_Blue.cpp">
       <Filter>03Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Enemy\Enemy_Orange.cpp">
@@ -100,9 +100,6 @@
       <Filter>03Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Enemy\Enemy_Red.cpp">
-      <Filter>03Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy\EnemyManager.cpp">
       <Filter>03Enemy</Filter>
     </ClCompile>
   </ItemGroup>
@@ -168,7 +165,7 @@
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Enemy\Enemy_Green.h">
+    <ClInclude Include="Enemy\Enemy_Blue.h">
       <Filter>03Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Enemy\Enemy_Orange.h">
@@ -178,9 +175,6 @@
       <Filter>03Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Enemy\Enemy_Red.h">
-      <Filter>03Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy\EnemyManager.h">
       <Filter>03Enemy</Filter>
     </ClInclude>
   </ItemGroup>

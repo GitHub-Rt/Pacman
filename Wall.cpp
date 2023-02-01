@@ -1,7 +1,6 @@
 #include "Wall.h"
 #include "Engine/Model.h"
 #include "Engine/CsvReader.h"
-#include "Wall.h"
 
 //コンストラクタ
 Wall::Wall(GameObject* parent)
@@ -34,7 +33,7 @@ void Wall::Initialize()
     {
         for (int j = 0; j < MAP_COL; j++)
         {
-            map_[i][j] = csv.GetValue(i, j);
+            map_[i][MAP_SIZE - 1 - j] = csv.GetValue(i, j);
         }
     }
 }

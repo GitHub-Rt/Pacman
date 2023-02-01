@@ -1,19 +1,22 @@
 #pragma once
-#include "EnemyManager.h"
-class Enemy_Red : public EnemyManager
+#include "../Engine/GameObject.h"
+
+class Enemy_Red : public GameObject
 {
 private :
 	int hModel;
 
 public :
-
+	Enemy_Red(GameObject* parent);
+	~Enemy_Red();
 	void Initialize() override;
-	void Update() override;
+	void Update()override;
 	void Draw() override;
+	void Release()override;
 	
 
 	/// <summary>
-	/// 次のポジションを決める関数
+	/// プレイヤーの後ろを追いかける探索AI
 	/// </summary>
 	void NextPos();
 };
