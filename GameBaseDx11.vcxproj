@@ -125,10 +125,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Enemy\Astar.cpp" />
     <ClCompile Include="Enemy\Enemy_Blue.cpp" />
     <ClCompile Include="Enemy\Enemy_Orange.cpp" />
     <ClCompile Include="Enemy\Enemy_Pink.cpp" />
     <ClCompile Include="Enemy\Enemy_Red.cpp" />
+    <ClCompile Include="Enemy\NodeData.cpp" />
     <ClCompile Include="Engine\Audio.cpp" />
     <ClCompile Include="Engine\BoxCollider.cpp" />
     <ClCompile Include="Engine\Camera.cpp" />
@@ -154,10 +156,12 @@
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enemy\Astar.h" />
     <ClInclude Include="Enemy\Enemy_Blue.h" />
     <ClInclude Include="Enemy\Enemy_Orange.h" />
     <ClInclude Include="Enemy\Enemy_Pink.h" />
     <ClInclude Include="Enemy\Enemy_Red.h" />
+    <ClInclude Include="Enemy\NodeData.h" />
     <ClInclude Include="Engine\Audio.h" />
     <ClInclude Include="Engine\BoxCollider.h" />
     <ClInclude Include="Engine\Camera.h" />

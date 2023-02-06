@@ -1,12 +1,15 @@
 #pragma once
 #include "Engine/GameObject.h"
 
+const int MAP_SIZE = 23;
+
+
 //ステージを管理するクラス
 class Wall : public GameObject
 {
     const int MAP_ROW = 23;
     const int MAP_COL = 23;
-    const int MAP_SIZE = 23;
+
 
 
     //int hModel_;    //モデル番号Wallの変数

@@ -3,6 +3,8 @@
 #include "Wall.h"
 #include "Player.h"
 #include "Engine/Camera.h"
+
+#include "Enemy/Enemy_Pink.h"
 #include "Enemy/Enemy_Red.h"
 
 //コンストラクタ
@@ -20,8 +22,8 @@ void PlayScene::Initialize()
 	Camera::SetTarget(XMFLOAT3(10, 0, 10));
 
 
-	Instantiate<Enemy_Red>(this);
-
+	//Instantiate<Enemy_Red>(this);
+	Instantiate<Enemy_Pink>(this);
 
 }
 
