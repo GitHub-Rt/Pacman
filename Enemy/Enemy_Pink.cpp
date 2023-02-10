@@ -34,7 +34,27 @@ void Enemy_Pink::Initialize()
 
 void Enemy_Pink::Update()
 {
-	NextPos();
+	timer++;
+	if (timer > 600 && isTime == false)
+	{//プレイヤーを追いかけ始める
+		isTime = true;
+		isPatrol = false;
+	}
+	else if (timer > 1200)
+	{//縄張りに戻っていく
+		isTime = false;
+		update = 0;
+	}
+
+	if (isTime)
+	{
+		NextPos();
+	}
+	else
+	{
+		//自分の縄張りをぐるぐるする
+		MyHouse();
+	}
 }
 
 void Enemy_Pink::Draw()
@@ -59,7 +79,7 @@ void Enemy_Pink::NextPos()
 
 
 	update++;
-	if (update > 60)
+	if (update > 30)
 	{
 		//探索
 		pAstar->InitSearch(
@@ -68,6 +88,22 @@ void Enemy_Pink::NextPos()
 
 		//ルート個数の取得
 		count = pAstar->GetRoute().size() - 2;
+
+
+		if (count <= 0)
+		{//プレイヤーに追いついたら、初期値に戻って再度探索を行う
+			transform_.position_.x = 11;
+			transform_.position_.z = 11;
+
+
+			pAstar->InitSearch(
+				(int)transform_.position_.x, (int)transform_.position_.z,
+				(int)playerPos.x + 0.5f, (int)playerPos.z + 0.5f);
+
+
+			count = pAstar->GetRoute().size() - 2;
+
+		}
 
 		update = 0;
 	}
@@ -93,4 +129,62 @@ void Enemy_Pink::NextPos()
 	}
 
 
+}
+
+
+void Enemy_Pink::MyHouse()
+{
+	update++;
+	if (update > 20)
+	{
+		update = 0;
+
+		if (isPatrol == false)
+		{
+			pAstar->InitSearch(
+				(int)transform_.position_.x, (int)transform_.position_.z,
+				HOUSE_X, HOUSE_Z);
+
+			count = pAstar->GetRoute().size() - 2;
+
+			if (count <= 0)
+			{//左上のポイントについた
+				isPatrol = true;
+			}
+		}
+		else
+		{
+			pAstar->InitSearch(
+				(int)transform_.position_.x, (int)transform_.position_.z,
+				HOUSE_X + tourX, HOUSE_Z - tourZ);
+
+			count = pAstar->GetRoute().size() - 2;
+
+			if (count <= 0)
+			{//巡回ポイントについた
+				isPatrol = false;
+			}
+		}
+
+	}
+
+	if (move > 10)
+	{
+		move = 0;
+
+		if (count >= 0)
+		{
+			route = pAstar->GetRoute()[count];
+
+			//移動
+			transform_.position_.x = route.x + 0.5f;
+			transform_.position_.z = route.y + 0.5f;
+
+			count--;
+		}
+	}
+	else
+	{
+		move++;
+	}
 }

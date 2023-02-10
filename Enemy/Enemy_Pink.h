@@ -6,6 +6,10 @@
 
 class Enemy_Pink : public GameObject
 {
+	const int HOUSE_X = 1;
+	const int HOUSE_Z = 21;
+
+
 private:
 	int hModel;
 	Astar* pAstar;
@@ -14,6 +18,13 @@ private:
 	int count;
 	int update;
 	int move;
+
+	int timer;
+	int tourX = 4;
+	int tourZ = 3;
+
+	bool isTime;
+	bool isPatrol;
 
 public:
 	Enemy_Pink(GameObject* parent);
@@ -28,5 +39,13 @@ public:
 	/// プレイヤーの少し前のポイントを目指して移動する
 	/// </summary>
 	void NextPos();
+
+
+
+	/// <summary>
+	/// 縄張りをぐるぐるする関数
+	/// </summary>
+	void MyHouse();
+
 };
 

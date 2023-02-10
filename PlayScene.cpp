@@ -6,6 +6,8 @@
 
 #include "Enemy/Enemy_Pink.h"
 #include "Enemy/Enemy_Red.h"
+#include "Enemy/Enemy_Blue.h"
+//#include "Enemy/Enemy_Orange.h"
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
@@ -22,9 +24,9 @@ void PlayScene::Initialize()
 	Camera::SetTarget(XMFLOAT3(10, 0, 10));
 
 
-	//Instantiate<Enemy_Red>(this);
+	Instantiate<Enemy_Red>(this);
 	Instantiate<Enemy_Pink>(this);
-
+	Instantiate<Enemy_Blue>(this);
 }
 
 //更新
