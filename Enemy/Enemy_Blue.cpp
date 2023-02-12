@@ -21,7 +21,7 @@ Enemy_Blue::~Enemy_Blue()
 
 void Enemy_Blue::Initialize()
 {
-	hModel = Model::Load("Enemy_Orange.fbx");
+	hModel = Model::Load("Enemy_Blue.fbx");
 	assert(hModel >= 0);
 
 
@@ -70,49 +70,7 @@ void Enemy_Blue::Release()
 
 void Enemy_Blue::NextPos()
 {
-	Player* pPlayer = (Player*)FindObject("Player");
-	if (pPlayer == nullptr)
-	{
-		return;
-	}
-	XMFLOAT3 playerPos = pPlayer->GetPosition();
-
-
-	update++;
-	if (update > 30)
-	{
-		//探索
-		pAstar->InitSearch(
-			(int)transform_.position_.x, (int)transform_.position_.z,
-			(int)playerPos.x, (int)playerPos.z);
-
-		//ルート個数の取得
-		count = pAstar->GetRoute().size() - 2;
-
-		update = 0;
-	}
-
-	if (move > 10)
-	{
-		move = 0;
-
-		if (count >= 0)
-		{
-			route = pAstar->GetRoute()[count];
-
-			//移動
-			transform_.position_.x = route.x + 0.5f;
-			transform_.position_.z = route.y + 0.5f;
-
-			count--;
-		}
-	}
-	else
-	{
-		move++;
-	}
-
-
+	//パックマンを中心にして、オイカケ（赤）の点対称の位置を最短距離で目指して行動する
 }
 
 void Enemy_Blue::MyHouse()

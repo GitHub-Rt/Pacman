@@ -7,7 +7,7 @@
 #include "Enemy/Enemy_Pink.h"
 #include "Enemy/Enemy_Red.h"
 #include "Enemy/Enemy_Blue.h"
-//#include "Enemy/Enemy_Orange.h"
+#include "Enemy/Enemy_Orange.h"
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
@@ -26,7 +26,8 @@ void PlayScene::Initialize()
 
 	Instantiate<Enemy_Red>(this);
 	Instantiate<Enemy_Pink>(this);
-	Instantiate<Enemy_Blue>(this);
+	//Instantiate<Enemy_Blue>(this);
+	Instantiate<Enemy_Orage>(this);
 }
 
 //更新

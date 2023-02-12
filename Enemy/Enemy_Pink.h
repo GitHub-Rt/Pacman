@@ -20,7 +20,7 @@ private:
 	int move;
 
 	int timer;
-	int tourX = 4;
+	int tourX = 3;
 	int tourZ = 3;
 
 	bool isTime;
