@@ -70,7 +70,57 @@ void Enemy_Orage::Release()
 
 void Enemy_Orage::NextPos()
 {
-	//パックマンより遠いところにいるときは追いかけ、近いところにいるときは逃げる
+	//パックマンが遠いところにいるときは追いかけ、近いところにいるときは逃げる
+
+	Player* pPlayer = (Player*)FindObject("Player");
+	XMFLOAT3 playerPos;
+	if (pPlayer != nullptr)
+	{
+		playerPos = pPlayer->GetPosition();
+	}
+
+	update++;
+	if (update > 30)
+	{
+		update = 0;
+
+		//探索
+		pAstar->InitSearch(
+			(int)transform_.position_.x, (int)transform_.position_.z,
+			(int)playerPos.x, (int)playerPos.z);
+
+		//ルート個数の取得
+		count = pAstar->GetRoute().size() - 2;
+
+		if (count <= 10)
+		{
+			//逃げる
+			pAstar->InitSearch(
+				(int)transform_.position_.x, (int)transform_.position_.z,
+				HOUSE_X, HOUSE_Z);
+
+			count = pAstar->GetRoute().size() - 2;
+		}
+	}
+	if (move > 10)
+	{
+		move = 0;
+
+		if (count >= 0)
+		{
+			route = pAstar->GetRoute()[count];
+
+			//移動
+			transform_.position_.x = route.x + 0.5f;
+			transform_.position_.z = route.y + 0.5f;
+
+			count--;
+		}
+	}
+	else
+	{
+		move++;
+	}
 }
 
 void Enemy_Orage::MyHouse()

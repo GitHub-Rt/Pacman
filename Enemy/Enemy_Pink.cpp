@@ -84,7 +84,7 @@ void Enemy_Pink::NextPos()
 		//’Tõ
 		pAstar->InitSearch(
 			(int)transform_.position_.x, (int)transform_.position_.z,
-			(int)playerPos.x + 0.5f, (int)playerPos.z + 0.5f);
+			(int)playerPos.x + 1.5f, (int)playerPos.z + 1.5f);
 
 		//ƒ‹[ƒgŒÂ”‚ÌŽæ“¾
 		count = pAstar->GetRoute().size() - 2;

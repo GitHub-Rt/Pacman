@@ -3,6 +3,7 @@
 #include "../Engine/Global.h"
 
 #include "../Player.h"
+#include "Enemy_Red.h"
 
 #include "../Wall.h"
 
@@ -48,7 +49,7 @@ void Enemy_Blue::Update()
 
 	if (isTime)
 	{
-		NextPos();
+		//NextPos();
 	}
 	else
 	{
@@ -71,6 +72,60 @@ void Enemy_Blue::Release()
 void Enemy_Blue::NextPos()
 {
 	//パックマンを中心にして、オイカケ（赤）の点対称の位置を最短距離で目指して行動する
+
+	Player* pPlayer = (Player*)FindObject("Player");
+	XMFLOAT3 playerPos;
+	if (pPlayer != nullptr)
+	{
+		playerPos = pPlayer->GetPosition();
+	}
+
+	Enemy_Red* pRed = (Enemy_Red*)FindObject("Enemy_Red");
+	XMFLOAT3 redPos;
+	if (pRed != nullptr)
+	{
+		redPos = pRed->GetPosition();
+	}
+
+	update++;
+	if (update > 30)
+	{
+		update = 0;
+
+		//探索
+		pAstar->InitSearch(
+			(int)transform_.position_.x, (int)transform_.position_.z,
+			(int)playerPos.x, (int)playerPos.z);
+
+		//ルート個数の取得
+		count = pAstar->GetRoute().size() - 2;
+
+		if (count <= 20)
+		{
+			//逃げる
+
+		}
+	}
+	if (move > 10)
+	{
+		move = 0;
+
+		if (count >= 0)
+		{
+			route = pAstar->GetRoute()[count];
+
+			//移動
+			transform_.position_.x = route.x + 0.5f;
+			transform_.position_.z = route.y + 0.5f;
+
+			count--;
+		}
+	}
+	else
+	{
+		move++;
+	}
+
 }
 
 void Enemy_Blue::MyHouse()
