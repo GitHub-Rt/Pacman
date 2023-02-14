@@ -40,11 +40,6 @@ void Enemy_Pink::Update()
 		isTime = true;
 		isPatrol = false;
 	}
-	else if (timer > 1200)
-	{//“ê’£‚è‚É–ß‚Á‚Ä‚¢‚­
-		isTime = false;
-		update = 0;
-	}
 
 	if (isTime)
 	{
@@ -75,8 +70,10 @@ void Enemy_Pink::NextPos()
 	{
 		return;
 	}
-	XMFLOAT3 playerPos = pPlayer->GetPosition();
+	//pPlayer->FrontPositon();
+	//XMFLOAT3 playerPos = pPlayer->GetFront();
 
+	XMFLOAT3 playerPos = pPlayer->GetPosition();
 
 	update++;
 	if (update > 30)
@@ -84,7 +81,7 @@ void Enemy_Pink::NextPos()
 		//’Tõ
 		pAstar->InitSearch(
 			(int)transform_.position_.x, (int)transform_.position_.z,
-			(int)playerPos.x + 1.5f, (int)playerPos.z + 1.5f);
+			(int)playerPos.x + 0.5f , (int)playerPos.z  + 0.5f);
 
 		//ƒ‹[ƒgŒÂ”‚ÌŽæ“¾
 		count = pAstar->GetRoute().size() - 2;

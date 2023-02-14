@@ -26,6 +26,8 @@ private:
 	bool isTime;
 	bool isPatrol;
 
+	XMFLOAT3 bluePos;
+
 public:
 	Enemy_Blue(GameObject* parent);
 	~Enemy_Blue();

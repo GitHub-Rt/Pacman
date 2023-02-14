@@ -26,7 +26,7 @@ void PlayScene::Initialize()
 
 	Instantiate<Enemy_Red>(this);
 	Instantiate<Enemy_Pink>(this);
-	Instantiate<Enemy_Blue>(this);
+	//Instantiate<Enemy_Blue>(this);
 	Instantiate<Enemy_Orage>(this);
 }
 

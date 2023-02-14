@@ -162,3 +162,24 @@ void Player::Draw()
 void Player::Release()
 {
 }
+
+void Player::FrontPositon()
+{
+    XMFLOAT3 Front = transform_.position_;
+
+    Front.x += FRONT_X;
+    Front.z += FRONT_Z;
+
+    bool isWall = false;
+    while (isWall == false);
+    {
+        isWall = pStage->IsWall((int)Front.x, (int)Front.z);
+        if (isWall == false)
+        {
+            Front.x -= 1;
+            Front.x -= 1;
+        }
+    } 
+
+    SetFront(Front);
+}

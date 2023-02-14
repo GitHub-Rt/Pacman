@@ -41,15 +41,10 @@ void Enemy_Blue::Update()
 		isTime = true;
 		isPatrol = false;
 	}
-	else if (timer > 1200)
-	{//縄張りに戻っていく
-		isTime = false;
-		update = 0;
-	}
 
 	if (isTime)
 	{
-		//NextPos();
+		NextPos();
 	}
 	else
 	{
@@ -84,7 +79,29 @@ void Enemy_Blue::NextPos()
 	XMFLOAT3 redPos;
 	if (pRed != nullptr)
 	{
+		//赤のポジションを取得
 		redPos = pRed->GetPosition();
+
+		//点対称の位置を調べる
+		
+		XMVECTOR vRed = XMLoadFloat3(&redPos);
+		XMVECTOR vPlayer = XMLoadFloat3(&playerPos);
+
+		XMVECTOR vBlue = vRed - vPlayer;
+		vBlue -= vBlue;		//向きを反対にする
+
+		
+		XMStoreFloat3(&bluePos, vBlue);
+		
+		bool isWall = pWall->IsWall((int)bluePos.x, (int)bluePos.z);
+
+		if (isWall == false)
+		{// 壁だった
+			while (isWall == false)
+			{
+
+			}
+		}
 	}
 
 	update++;
@@ -95,16 +112,11 @@ void Enemy_Blue::NextPos()
 		//探索
 		pAstar->InitSearch(
 			(int)transform_.position_.x, (int)transform_.position_.z,
-			(int)playerPos.x, (int)playerPos.z);
+			(int)bluePos.x, (int)bluePos.z);
 
 		//ルート個数の取得
 		count = pAstar->GetRoute().size() - 2;
 
-		if (count <= 20)
-		{
-			//逃げる
-
-		}
 	}
 	if (move > 10)
 	{

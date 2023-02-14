@@ -40,12 +40,7 @@ void Enemy_Red::Update()
 		isTime = true;
 		isPatrol = false;
 	}
-	else if (timer > 1200)
-	{//“ê’£‚è‚É–ß‚Á‚Ä‚¢‚­
-		isTime = false;
-		update = 0;
-	}
-	
+
 	if (isTime)
 	{
 		NextPos();
