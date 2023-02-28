@@ -71,14 +71,13 @@ bool Wall::IsWall(int x, int z)
 {
     //return map_[x][z] == 0 ? false : true;       O€‰‰Zq
 
-    return map_[x][z] == 1; //x z ‚ª‚Preturn‚Å•Ô‚·
-
-    if (map_[x][z] == 1) //‚Ü‚Á‚Õ‚Ì‚˜A‚š‚ª•Ç[1]‚¾‚Á‚½‚çyes‚©no‚Åreturn•Ô‚·
-    {
-        return false;
-    }
-    else
+    if (map_[x][z] == 1)
     {
         return true;
     }
+    else
+    {
+        return false;
+    }
+
 }

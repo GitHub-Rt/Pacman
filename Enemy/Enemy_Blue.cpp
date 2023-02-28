@@ -79,30 +79,36 @@ void Enemy_Blue::NextPos()
 	XMFLOAT3 redPos;
 	if (pRed != nullptr)
 	{
-		//赤のポジションを取得
 		redPos = pRed->GetPosition();
+	}
 
-		//点対称の位置を調べる
-		
-		XMVECTOR vRed = XMLoadFloat3(&redPos);
-		XMVECTOR vPlayer = XMLoadFloat3(&playerPos);
 
-		XMVECTOR vBlue = vRed - vPlayer;
-		vBlue -= vBlue;		//向きを反対にする
+	//点対称の位置を調べる
 
-		
-		XMStoreFloat3(&bluePos, vBlue);
-		
-		bool isWall = pWall->IsWall((int)bluePos.x, (int)bluePos.z);
+	XMVECTOR vRed = XMLoadFloat3(&redPos);
+	XMVECTOR vPlayer = XMLoadFloat3(&playerPos);
 
-		if (isWall == false)
-		{// 壁だった
-			while (isWall == false)
-			{
+	XMVECTOR vBlue = vRed - vPlayer;
+	vBlue = XMVector3Normalize(vBlue);
+	vBlue *= -1;		//向きを反対にする
 
-			}
+
+	XMStoreFloat3(&bluePos, vBlue);
+	ceil(bluePos.x);
+	ceil(bluePos.z);
+
+	bool isWall = pWall->IsWall((int)bluePos.x, (int)bluePos.z);
+
+	if (isWall)
+	{// 壁だった
+		while (isWall)
+		{
+			bluePos.x--;
+			bluePos.z--;
+			isWall = pWall->IsWall((int)bluePos.x, (int)bluePos.z);
 		}
 	}
+
 
 	update++;
 	if (update > 30)

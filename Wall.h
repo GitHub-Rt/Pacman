@@ -41,7 +41,12 @@ public:
     //ŠJ•ú
     void Release() override;
 
-    //‚»‚±‚Í•ÇH
+    /// <summary>
+    /// •Ç‚©‚Ç‚¤‚©‚ğ”»’f
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="z"></param>
+    /// <returns>•Ç‚¾‚Á‚½‚çtrue</returns>
     bool IsWall(int x, int z);
 
 };
